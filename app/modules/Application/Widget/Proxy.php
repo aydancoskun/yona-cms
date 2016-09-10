@@ -18,7 +18,6 @@ class Proxy extends \Phalcon\Mvc\User\Component
     private $cacheTime = 60;
     private $object;
     private $namespace;
-    private $hide_for_mobile = false;
 
     public function __construct($namespace = 'Index', array $params = array())
     {
@@ -38,23 +37,14 @@ class Proxy extends \Phalcon\Mvc\User\Component
         if (isset($params['time']) && $params['time']) {
             $this->cacheTime = (int) $params['time'];
         }
-        if (isset($params['hide_for_mobile']) && $params['hide_for_mobile']) {
-            if (MOBILE_DEVICE) {
-                $this->hide_for_mobile = true;
-            }
-        }
-
     }
 
     public function __call($method, array $params)
     {
-        if ($this->hide_for_mobile) {
-            return;
-        }
         try {
             if ($this->cacheEnabled) {
                 $paramsString = md5(serialize($params));
-                $cacheKey = md5($this->namespace . '::' . $method . $paramsString . LANG . (string) MOBILE_DEVICE);
+                $cacheKey = md5($this->namespace . '::' . $method . $paramsString . LANG);
                 $results = self::$cache->get($cacheKey);
                 if (!$results) {
                     if (method_exists($this->object, $method)) {

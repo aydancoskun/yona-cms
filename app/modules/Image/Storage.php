@@ -54,7 +54,6 @@ class Storage extends Component
         $this->height = (isset($params['height'])) ? $params['height'] : null;
 
         $this->widthHeight = (isset($params['widthHeight'])) ? $params['widthHeight'] : true;
-        $this->widthHeight = (isset($params['widthHeight']) && MOBILE_DEVICE) ? false : true;
 
         $this->stretch = (isset($params['stretch'])) ? $params['stretch'] : null;
     }
@@ -315,11 +314,6 @@ class Storage extends Component
 
         require_once __DIR__ . '/PHPThumb/ThumbLib.inc.php';
         $image = \PhpThumbFactory::create($originalAbsPath);
-        // Для мобильных устройств отдаем изображение с качеством на уровне 60%
-        if (MOBILE_DEVICE) {
-            $options = ['jpegQuality' => 60];
-            $image->setOptions($options);
-        }
         switch ($this->strategy) {
             case 'w':
                 // Масштабируем по ширине

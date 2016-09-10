@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.5.0
+
+- Migrated to Phalcon v3.0.0;
+
+- Removed MobileDetect since wrong working with desktop Edge browser;
+
+- Added Dockerfile for easy setup via Docker;
+
 ## v0.4.2
 
 - Fixed underscore getters/setters on Page and Publication modules;

@@ -159,7 +159,6 @@ class Bootstrap
             new \YonaCMS\Plugin\Localization($dispatcher);
             new \YonaCMS\Plugin\AdminLocalization($di->get('config'));
             new \YonaCMS\Plugin\Acl($di->get('acl'), $dispatcher, $di->get('view'));
-            new \YonaCMS\Plugin\MobileDetect($di->get('session'), $di->get('view'), $di->get('request'));
         });
 
         $eventsManager->attach("dispatch:afterDispatchLoop", function ($event, $dispatcher) use ($di) {
