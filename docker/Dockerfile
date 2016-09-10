@@ -13,6 +13,7 @@ RUN wget http://nginx.org/keys/nginx_signing.key
 RUN apt-key add nginx_signing.key
 RUN add-apt-repository 'deb http://nginx.org/packages/debian/ jessie nginx'
 RUN apt-get update && apt-get install -y nginx
+COPY etc/nginx/conf.d/yona.conf /etc/nginx/conf.d/yona.conf
 
 # PHP7, memcached
 RUN apt-get install -y php5-fpm php5-memcached php5-intl memcached
@@ -37,3 +38,5 @@ RUN php -r "if (hash_file('SHA384', 'composer-setup.php') === 'e115a8dc7871f15d8
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN php composer.phar install
+
+COPY startup.sh startup.sh
