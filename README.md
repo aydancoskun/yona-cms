@@ -9,6 +9,27 @@ Has a convenient modular structure. Has simple configuration and architecture. C
 
 [Project website](http://yonacms.com/)
 
+## Docker
+
+    git clone git@github.com:oleksandr-torosh/yona-cms.git
+    
+s    
+
+    cd yona-cms
+    bash bin/permissions.sh
+    
+s
+
+    docker build -t yona-cms:latest ./docker/
+    
+s   
+
+    docker run -it -p 8080:8080 -p 8081:8081 -v $(pwd)/src:/home/yona/www/yona-cms yona-cms:latest
+    
+s
+
+    docker exec -it CONTAINER_ID bash ./startup.sh
+
 ## Installation
 
 ### Composer

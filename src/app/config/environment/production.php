@@ -7,9 +7,9 @@ return [
     'database'  => [
         'adapter'  => 'Mysql',
         'host'     => 'localhost',
-        'username' => '',
-        'password' => '',
-        'dbname'   => '',
+        'username' => 'root',
+        'password' => '111',
+        'dbname'   => 'yona',
         'charset'  => 'utf8',
     ],
 
